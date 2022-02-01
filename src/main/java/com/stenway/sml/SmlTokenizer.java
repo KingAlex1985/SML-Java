@@ -27,7 +27,7 @@ public class SmlTokenizer {
 		return list.stream().mapToInt(i -> i).toArray();
 	} 
 	
-	private void splitIntoLines(int[] wsvTokens) {
+	protected ArrayList<int[]> splitIntoLines(int[] wsvTokens) {
 		ArrayList<Integer> curLineTokens = new ArrayList<>();
 		
 		for (int i=0; i<wsvTokens.length/2; i++) {
@@ -44,9 +44,11 @@ public class SmlTokenizer {
 		
 		int[] lastLine = toArray(curLineTokens);
 		lines.add(lastLine);
+
+		return lines;
 	}
 	
-	private int getValueCount(int[] line) {
+	protected int getValueCount(int[] line) {
 		int count = 0;
 		for (int i=0; i<line.length/2; i++) {
 			int tokenType = line[i*2];
